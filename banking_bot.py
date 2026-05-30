@@ -1,14 +1,21 @@
 import os
 from dotenv import load_dotenv
 from mistralai.client import MistralClient
-from mistralai.models.chat_message import ChatMessage
 
 load_dotenv()
 
+# ChatMessage class for API
+class ChatMessage:
+    def __init__(self, role, content):
+        self.role = role
+        self.content = content
+
+    def dict(self):
+        return {"role": self.role, "content": self.content}
+
 class BankingBot:
     def __init__(self):
-        api_key = os.getenv(" VgjMaOhcbAC94eweOCSdlYr6rhs1Br9Q
-")
+        api_key = os.getenv("MISTRAL_API_KEY")
         if not api_key:
             raise ValueError("MISTRAL_API_KEY not found in .env file")
 
